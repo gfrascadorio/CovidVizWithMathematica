@@ -152,8 +152,8 @@ If[p>0&&p<=Length@data,j=p; pval=idata[[j,2]]]
 (*Step 9 - Overlaying*)
 
 
-(* ::Input:: *)
-(*p1=DiscretePlot[idata[[i,2]],{i,Length@data},Evaluate@plotopts];*)
-(*p2=ListPlot[line1,p2opts];*)
-(*p3=ListPlot[line2,p3opts];*)
-(*Overlay[{p1,p2,p3}]*)
+(* ::Input::Initialization:: *)
+p1=DiscretePlot[idata[[i,2]],{i,Length@data},Evaluate@plotopts];
+p2=ListPlot[line1,p2opts];
+p3=ListPlot[line2,p3opts];
+Overlay[{p1,p2,p3}]
