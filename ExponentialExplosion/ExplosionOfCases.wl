@@ -31,19 +31,18 @@ dcolor=Darker[color];
 (*Step 2 - Vanilla ListPlot*)
 
 
-(* ::Input::Initialization:: *)
-ListPlot@data
+(* ::Input:: *)
+(*ListPlot@data*)
 
 
 (* ::Section:: *)
 (*Step 3 - Line plot, Filled, Line darker coloring*)
 
 
-(* ::Input::Initialization:: *)
-
-plotopts={Axes->False,
-PlotStyle->dcolor,Joined->True, Filling->Axis, FillingStyle->color};
-ListPlot[data, plotopts]
+(* ::Input:: *)
+(*plotopts={Axes->False,*)
+(*PlotStyle->dcolor,Joined->True, Filling->Axis, FillingStyle->color};*)
+(*ListPlot[data, plotopts]*)
 
 
 (* ::Section:: *)
@@ -136,12 +135,13 @@ ClearAll[idata,indexedData];
 indexedData=MapIndexed[{#2[[1]],#1}&,data];
 idata=%;
 pad=100;
-plotopts={Axes->False,Joined->True, Filling->Axis,PlotRange->{-pad,Max@data+pad}};
-
+plotopts={Axes->False,Joined->True, Filling->Axis,PlotRange->{{-xpad,Length@data+xpad},{-ypad,Max@data+ypad}}};
+(*plotopts={Axes->False,Joined->True, Filling->Axis,PlotRange->{-pad,Max@data+pad}};*)
+(*plotopts={Axes->False,Joined->True, Filling->Axis,ImagePadding\[Rule]100};*)
 DynamicModule[{p=None,j=10,pval=idata[[10,2]]},
 EventHandler[Dynamic@DiscretePlot[
 idata[[i,2]],{i,Length@data},Evaluate@plotopts,Epilog->{PointSize[0.025],Text[NumberForm[pval,DigitBlock->3],{j,pval}+{2,pad}],Point[{j,pval}]}],
-"MouseMoved":>(
+"MouseMoved":>( 
 p=IntegerPart@MousePosition["Graphics"][[1]];
 If[p>0&&p<=Length@data,j=p; pval=idata[[j,2]]]
 )]]
@@ -152,11 +152,8 @@ If[p>0&&p<=Length@data,j=p; pval=idata[[j,2]]]
 (*Step 9 - Overlaying*)
 
 
-(* ::Input::Initialization:: *)
-p1=DiscretePlot[idata[[i,2]],{i,Length@data},Evaluate@plotopts];
-p2=ListPlot[line1,p2opts];
-p3=ListPlot[line2,p3opts];
-Overlay[{p1,p2,p3}]
-
-
-idata
+(* ::Input:: *)
+(*p1=DiscretePlot[idata[[i,2]],{i,Length@data},Evaluate@plotopts];*)
+(*p2=ListPlot[line1,p2opts];*)
+(*p3=ListPlot[line2,p3opts];*)
+(*Overlay[{p1,p2,p3}]*)
